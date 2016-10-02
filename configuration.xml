@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+	This is XML, if you don't know XML, look it up.
+	It's really easy, if you can host a RoR-server, host an IRC-server,
+	host this bot, then I assume that you can read/write XML as well.
+	
+	There're 3 sections in this file:
+	  - The general configuration with some general stuff in it
+	  - The IRC configuration
+	  - The RoR-server(s) configuration
+	Quite self-explanatory.
+	
+	Minimal configuration:
+		<configuration>
+			<IRCclient>
+				<server host="yourHost" />
+			</IRCclient>
+			<RoRclients>
+				<RoRclient>
+					<server host="yourHost" port=somePort />
+					<irc channel="#someChannel" />
+				</RoRclient>
+			</RoRclients>
+		</configuration>
+	
+	note: IRCclient has 3 capitals and RoRclient(s) has 2 capitals. All the rest has no capitals
+ -->
+<configuration>
+
+	<general>
+		<version>0.01</version>
+		<fullversion>0.01M</fullversion>
+		<logfile append="no" level="debug">RoRservices037.log</logfile> <!-- that doesn't work -->
+		<admins> <!-- global - root - admins here -->
+			<!-- these admins have access to advanced functionality of the bot itself
+			e.g.: restart/shutdown/add a server/...
+			login via IRC using the identify command:
+			/msg myRoRbot identify uUsername aPassword-->
+			<admin username="admin" password="yourpassword" />
+			<admin username="mod" password="yourpassword2" />
+		</admins>
+	</general>
+
+	<IRCclient>
+		<server host="irc.yourserver.net" port="6667" />
+		<user nickname="RoRBot" realname="RoR 0.37 Server Monitor" username="" password="" />
+       <!-- Oper and nickserv fields optional -->
+		<oper password="MyOper" username="Oper"/>
+		<nickserv servicename="NickServ" username="RoRBot" password="yourpassword" />
+		<local address="" port="0" />
+		<ssl>no</ssl>
+		<ipv6>no</ipv6>
+	</IRCclient>
+	
+	<RoRclients>
+		<!-- this is a template. All RoR clients will follow this template. -->
+		<RoRclient id="default/template" enabled="yes">
+			<user name="RoRBot" token="hashedtoken" language="en_US" />
+			<commands prefix="-" /> <!-- do not use "!" as prefix. That won't work. (NB: this doesn't work anyway)-->
+		</RoRclient>
+		<RoRclient id="My Server" enabled="yes">
+			<server host="yourserver.net" port="12000" password="" />
+			<user name="RoRBot" token="hashedtoken" language="en_US" />
+			<irc channel="#channel" />
+			<admins>
+				<admin username="admin" password="yourpassword" />
+			</admins>
+			<announcements delay="900" enabled="no"> <!-- delay in seconds -->
+				<announcement>Hi, I'm an announcement</announcement>
+				<announcement>And I'm the second announcement.</announcement>
+				<announcement>And I'm the last one. After me, you'll see number 1 again</announcement>
+			</announcements>
+		</RoRclient>
+	</RoRclients>
+
+</configuration>
