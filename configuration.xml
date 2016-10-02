@@ -44,7 +44,7 @@
 	<IRCclient>
 		<server host="irc.yourserver.net" port="6667" />
 		<user nickname="RoRBot" realname="RoR 0.37 Server Monitor" username="" password="" />
-       <!-- Oper and nickserv fields optional -->
+       <!-- Oper and NickServ fields optional -->
 		<oper password="MyOper" username="Oper"/>
 		<nickserv servicename="NickServ" username="RoRBot" password="yourpassword" />
 		<local address="" port="0" />
